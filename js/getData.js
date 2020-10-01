@@ -6,7 +6,7 @@ const getData = (api)=>{
     .then( (response) =>response.json())
     .then((json)=>{
       // console.log('json-->', json);
-      llenarDatos(json)
+      llenarDatos(json),paginacion(json.info)
     })  
     .catch( (error) => {
       console.log('error', error);
@@ -29,4 +29,36 @@ const llenarDatos = (data)=>{
   });
   document.getElementById("datosPersonaje").innerHTML= html
 }
+/////
+const paginacion = (data)=>{
+let html = ''
+html += `<li class="page-item"><a class="page-link" onclick="getData('${data.prev}')">previous</a></li>`
+html += `<li class="page-item"><a class="page-link" onclick="getData('${data.next}')">next</a></li>`
+document.getElementById("paginacion").innerHTML=html
+}
+/////
 getData(API)
+
+
+
+/*
+
+console.error();   Usar para los errores
+
+.then( (response) =>{
+  response.json()
+  .then((json)=>{
+      // console.log('json-->', json);
+      llenarDatos(json)
+    })  
+  .catch( (error) => {
+      console.log('error', error);
+    })
+})
+.catch( (error) => {
+      console.log('error', error);
+)
+    
+    
+
+*/ 

@@ -31,9 +31,17 @@ const llenarDatos = (data)=>{
 }
 /////
 const paginacion = (data)=>{
+let prevDisable = ''
+let NextDisable = ''
+if (data.prev == null) {
+  prevDisable = "disabled"
+} 
+if (data.next == null) {
+  NextDisable = "disabled"
+} 
 let html = ''
-html += `<li class="page-item"><a class="page-link" onclick="getData('${data.prev}')">previous</a></li>`
-html += `<li class="page-item"><a class="page-link" onclick="getData('${data.next}')">next</a></li>`
+html += `<li class="page-item ${prevDisable}"><a class="page-link" onclick="getData('${data.prev}')">previous</a></li>`
+html += `<li class="page-item ${NextDisable}" ><a class="page-link " onclick="getData('${data.next}')">next</a></li>`
 document.getElementById("paginacion").innerHTML=html
 }
 /////
